@@ -8,12 +8,22 @@
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body onload="launchTheLab()">
+    <svg class="oth-title-arc" width="300" height="150">
+      <!---->
+      <!-- TODO: faire les arcs sombres -->
+      <!-- TODO: déplacer le menu ici -->
+      <!---->
+      <g id="test-arc" transform="translate(150, 10)">
+      </g>
+      <!---->
+      <g id="othy-menu"></g>
+      <!---->
+    </svg>
+    <h1>Othy's<br />Lab</h1>
+    <canvas class="oth-clock" id="othy-clock"></canvas>
     <!---->
-    <!-- TODO: clock en fond -->
+    <div id="othy-menu_alt"></div><!-- TODO: faire disparaître ici dès que le menu est ok -->
     <!---->
-    <!-- TODO: juste le titre avec des arcs sombres (arcs lumineux côté wasm) -->
-    <!---->
-    <!-- TODO: les pages: clock/index, accueil, RPG, projets,  -->
-    <!---->
+    <div class="oth-viewer" id="othy-view"></div>
   </body>
 </html>

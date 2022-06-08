@@ -10,6 +10,7 @@ authors = ["othelarian <le.maitre.killian@gmail.com>"]
 crate-type = ["cdylib"]
 
 [dependencies]
+markdown = "0.3.0"
 wasm-bindgen = "0.2.80"
 #wee_alloc = "0.4.5"
 yew = "0.19.3"
