@@ -4,30 +4,63 @@ body
   font-family: sans-serif
   font-size: 13px
 
-h1
-  text-align: center
-  font-size: 29px
-  margin-top: 5px
-
 .oth-clock
-  width: 300px
+  width: 340px
   height: 300px
   position: absolute
-  top: 170px
-  left: calc(50% - 150px)
+  top: 190px
+  left: calc(50% - 170px)
   z-index: -1
+  //
+  // TODO: border à supprimer
+  //
   border: solid 1px blue
 
+// partie arc ###################################
+
+.oth-title
+  text-align: center
+  font-size: 26px
+  margin-top: 5px
+
 .oth-title-arc
-  background: turquoise
+  $rest_ang: 75deg
+
   position: absolute
   top: 0
-  left: calc(50% - 150px)
+  left: calc(50% - 170px)
   z-index: -1
+  //
+  // TODO: à supprimer
+  //
+  border: solid 1px red
+
+  g.back
+    transform: rotate($rest_ang)
+    fill: pink
+
+  g.back-moved
+    transform: rotate(160deg) scaleY(0.5)
+    transition: transform .14s
+
+  g.front
+    transform: rotate($rest_ang)
+    fill: green
+    cursor: pointer
+
+  g.front-moved
+    transform: rotate(20deg) scaleY(0.5)
+    transition: transform 0.1s
 
   path
-    stroke-width: 8px
     stroke-linecap: round
-    stroke: #000
     fill: none
+
+  path.back
+    stroke-width: 4px
+    stroke: #0004
+
+  path.back-active
+    stroke-width: 6px
+    stroke: #39f
 

@@ -1,0 +1,45 @@
+- var rt = 105;
+- var x = 0;
+- function deg2rad(deg) { return deg/180*Math.PI; }
+- function cosy(ang, r) { return Math.cos(deg2rad(ang))*r; }
+- function siny(ang, r) { return Math.sin(deg2rad(ang))*r; }
+- function toPoint(ang, r) { return cosy(ang, r)+' '+siny(ang, r); }
+doctype html
+html
+  head
+    title Othy's Lab
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+    link(rel='stylesheet', href='style.css')
+    script(type='text/javascript', src='index.js')
+  body(onload='launchTheLab()')
+    svg.oth-title-arc(width='340', height='180')
+      defs
+        g#rounded-rect
+          rect(x='-8', y='-8', width='16', height='16', rx='8', ry='8')/
+      g.oth-arc(transform='translate(170, -22)')
+        while x < 3
+          path.back(
+            id='othy-arc-'+x
+            d='m'+toPoint(160, rt)+' A'+rt+' '+rt+' 0 0 0 '+toPoint(20, rt)
+          )
+          g.back(id='othy-menu-back-'+x)
+            use(href='#rounded-rect', transform='translate('+(rt)+')')/
+          g.front(id='othy-menu-front-'+x)
+            use(href='#rounded-rect', transform='translate('+(rt)+')')/
+          - rt += 20
+          - x++
+      g.oth-circs
+        //
+        // TODO: il ne va pas rester tout seul ce cercle
+        //
+        circle/
+    h1.oth-title Othy's
+      br
+      span Lab
+    canvas#othy-clock.oth-clock
+    //
+    // TODO: à enlever
+    //
+    div#othy-menu-alt
+    div#othy-view.oth-viewer

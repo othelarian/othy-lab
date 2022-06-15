@@ -1,5 +1,5 @@
 import lab from '../lab/Cargo.toml'
-#import clock from '../clock/Cargo/toml'
+import clock from '../clock/Cargo.toml'
 
 getId = (id) -> document.getElementById id
 
@@ -16,7 +16,7 @@ initLab = ->
   #
   # TODO
   #
-  #clock = await clock
+  clck = await clock()
   #
   app = await lab()
   #
@@ -24,24 +24,14 @@ initLab = ->
   #
   # TODO: mise en place des arcs sombres (précalcul)
   #
-  arcy = getId 'test-arc'
-  #
-  deg2rad = (deg) -> deg/180*Math.PI
-  createArc = (rayon, bord) ->
-    arc1 = document.createElementNS 'http://www.w3.org/2000/svg', 'path'
-    arcp = (ang, r) -> [Math.cos(deg2rad ang) * r, Math.sin(deg2rad ang) * r]
-    [fpx, fpy] = arcp (180 - bord), rayon
-    [epx, epy] = arcp bord, rayon
-    arc1.setAttribute 'd', "M#{fpx} #{fpy} A#{rayon} #{rayon} 0 0 0 #{epx} #{epy}"
-    arcy.append arc1
-  #
-  #createArc 110, 22
-  #createArc 125, 19
-  #createArc 140, 17
-  #
+  gt = document.querySelector 'g.front'
+  gt.addEventListener 'click', ->
+    document.querySelector('g.front').classList.toggle 'front-moved'
+    document.querySelector('g.back').classList.toggle 'back-moved'
   #
   #
   app.main_js getId 'othy-view'
+  clck.main_js getId 'othy-clock'
 
 window.TheLab = TheLab
 window.launchTheLab = initLab
