@@ -1,5 +1,10 @@
 - var rt = 105;
 - var x = 0;
+- var circ_ang = [68, 38, 130];
+- var svg_w = 340;
+- var svg_h = 175;
+- var svg_bar_w = 50;
+- var svg_bar_h = 16;
 - function deg2rad(deg) { return deg/180*Math.PI; }
 - function cosy(ang, r) { return Math.cos(deg2rad(ang))*r; }
 - function siny(ang, r) { return Math.sin(deg2rad(ang))*r; }
@@ -13,33 +18,45 @@ html
     link(rel='stylesheet', href='style.css')
     script(type='text/javascript', src='index.js')
   body(onload='launchTheLab()')
-    svg.oth-title-arc(width='340', height='180')
+    svg.oth-title-arc(width=svg_w, height=svg_h)
       defs
         g#rounded-rect
           rect(x='-8', y='-8', width='16', height='16', rx='8', ry='8')/
-      g.oth-arc(transform='translate(170, -22)')
-        while x < 3
-          path.back(
-            id='othy-arc-'+x
-            d='m'+toPoint(160, rt)+' A'+rt+' '+rt+' 0 0 0 '+toPoint(20, rt)
-          )
-          g.back(id='othy-menu-back-'+x)
-            use(href='#rounded-rect', transform='translate('+(rt)+')')/
-          g.front(id='othy-menu-front-'+x)
-            use(href='#rounded-rect', transform='translate('+(rt)+')')/
+        g#cross(transform='rotate(45)')
+          rect(x='-2.5', y='-11', rx='3', ry='3', width='6', height='22')
+          rect(x='-11', y='-2.5', rw='3', ry='3', width='22', height='6')
+      g.oth-arc(transform='translate('+(svg_w/2)+', -22)')
+        each ca in circ_ang
+          - var tmp = toPoint(ca, 180).split(' ')
+          g.oth-svg-b
+            path.arc-back(
+              id='othy-arc-'+x
+              d='m'+toPoint(160, rt)+' A'+rt+' '+rt+' 0 0 0 '+toPoint(20, rt)
+            )
+            g.back(id='othy-menu-back-'+x)
+              use(href='#rounded-rect', transform='translate('+(rt)+')')/
+            g.front(id='othy-menu-front-'+x)
+              use(href='#rounded-rect', transform='translate('+(rt)+')')/
+            g.circ-g(id='othy-menu-circ-'+x, transform='rotate(-'+ca+')')
+              circle.circ-back(cx=tmp[0], cy=tmp[1], r='20')
+              circle.circ(cx=tmp[0], cy=tmp[1], r='20')
+              use(href='#cross', transform='translate('+tmp[0]+','+tmp[1]+')')
           - rt += 20
           - x++
-      g.oth-circs
-        //
-        // TODO: il ne va pas rester tout seul ce cercle
-        //
-        circle/
-    h1.oth-title Othy's
-      br
-      span Lab
+      rect.oth-menu-bar(
+        x=svg_w/2-svg_bar_w/2, y=svg_h-svg_bar_h-5
+        width=svg_bar_w, height=svg_bar_h
+        rx='8', ry='8'
+      )
+    h1.oth-title Othy's#[br]Lab
     canvas#othy-clock.oth-clock
-    //
-    // TODO: à enlever
-    //
-    div#othy-menu-alt
+    div#othy-menu.oth-menu
+      //
+      // TODO: cacher le menu pour l'ouvrir avec la petite barre
+      //
+      button#othy-menu-blog Le blog
+      button#othy-menu-projets Les projets de dév
+      button#othy-menu-jdr Les jeux de rôles
+    //div#othy-view.oth-viewer(style='display:none')
+    // TODO
     div#othy-view.oth-viewer

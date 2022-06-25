@@ -1,3 +1,7 @@
+$accentcol: orange
+$svg-margin: 110px
+
+// global #######################################
 
 body
   margin: 0
@@ -8,7 +12,7 @@ body
   width: 340px
   height: 300px
   position: absolute
-  top: 190px
+  top: 180px
   left: calc(50% - 170px)
   z-index: -1
   //
@@ -29,38 +33,100 @@ body
   position: absolute
   top: 0
   left: calc(50% - 170px)
-  z-index: -1
-  //
-  // TODO: à supprimer
-  //
-  border: solid 1px red
+
+  @mixin arc
+    transform: rotate($rest_ang)
+    fill: $accentcol
+    cursor: pointer
+  @mixin archover($deg: 20deg, $time: 0.1s)
+    transform: rotate($deg) scaleY(0.5)
+    transition: transform $time
 
   g.back
-    transform: rotate($rest_ang)
-    fill: pink
+    @include arc
 
-  g.back-moved
-    transform: rotate(160deg) scaleY(0.5)
-    transition: transform .14s
+  g.back.moved
+    @include archover($deg: 160deg, $time: .14s)
 
   g.front
-    transform: rotate($rest_ang)
-    fill: green
-    cursor: pointer
+    @include arc
 
-  g.front-moved
-    transform: rotate(20deg) scaleY(0.5)
-    transition: transform 0.1s
+  g.front.moved
+    @include archover
 
   path
     stroke-linecap: round
     fill: none
 
-  path.back
+  path.arc-back
     stroke-width: 4px
     stroke: #0004
 
-  path.back-active
+  path.arc-back.active
     stroke-width: 6px
     stroke: #39f
+
+  .circ-g use
+    fill: none
+
+  .circ-g.show
+    transform: rotate(0deg)
+    transition: transform 0.2s
+
+  .circ-g:hover
+    .circ
+      fill: $accentcol
+      stroke: white
+
+    .circ-back
+      stroke: $accentcol
+      stroke-width: 9px
+
+    use
+      fill: black
+
+  .circ
+    stroke: $accentcol
+    stroke-width: 7px
+    fill: none
+
+  .circ-back
+    fill: none
+
+  .oth-menu-bar
+    fill: $accentcol
+
+// partie menu ##################################
+
+.oth-menu
+  width: fit-content
+  margin: auto
+  margin-top: $svg-margin
+  box-sizing: border-box
+  padding: 10px
+  background: #0008
+  border-radius: 20px
+  display: flex
+  flex-direction: column
+  gap: 20px
+
+  // TODO: transition d'entrée et sortie
+
+  button
+    background: $accentcol
+    border: none
+    border-radius: 9px
+    color: black
+    font-weight: bold
+    width: 180px
+    height: 35px
+
+// partie view ##################################
+
+.oth-viewer
+  border: solid 1px pink
+  width: 95%
+  max-width: 600px
+  margin: auto
+  margin-top: $svg-margin
 
