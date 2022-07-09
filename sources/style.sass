@@ -1,5 +1,4 @@
 $accentcol: orange
-$svg-margin: 110px
 
 // global #######################################
 
@@ -96,12 +95,21 @@ body
   .oth-menu-bar
     fill: $accentcol
 
+    &:hover
+      fill: white
+      stroke: $accentcol
+      stroke-width: 1px
+
+  .oth-menu-bar-line
+    stroke: black
+    stroke-width: 2px
+    stroke-linecap: round
+    fill: none
+
 // partie menu ##################################
 
 .oth-menu
-  width: fit-content
-  margin: auto
-  margin-top: $svg-margin
+  width: 200px
   box-sizing: border-box
   padding: 10px
   background: #0008
@@ -109,6 +117,9 @@ body
   display: flex
   flex-direction: column
   gap: 20px
+  position: absolute
+  left: calc(50% - 100px)
+  top: 173px
 
   // TODO: transition d'entrée et sortie
 
@@ -128,5 +139,5 @@ body
   width: 95%
   max-width: 600px
   margin: auto
-  margin-top: $svg-margin
+  margin-top: 110px
 

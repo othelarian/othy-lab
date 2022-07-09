@@ -69,7 +69,7 @@ rollExec = (inFile, outFile, name, cb) ->
     traceExec name
     cb null, 0
 
-# ACTION FUNCTIONS ####################
+# ACTION FUNS #########################
 
 checkEnv = (options) ->
   if options.release then envRelease = true

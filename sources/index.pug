@@ -43,20 +43,18 @@ html
               use(href='#cross', transform='translate('+tmp[0]+','+tmp[1]+')')
           - rt += 20
           - x++
-      rect.oth-menu-bar(
-        x=svg_w/2-svg_bar_w/2, y=svg_h-svg_bar_h-5
-        width=svg_bar_w, height=svg_bar_h
-        rx='8', ry='8'
-      )
+      g#othy-menu-bar-g(transform='translate('+(svg_w/2)+','+(svg_h-svg_bar_h-5)+')')
+        rect.oth-menu-bar(
+          x=-svg_bar_w/2, y='0', rx='8', ry='8'
+          width=svg_bar_w, height=svg_bar_h
+        )
+        polyline#othy-menu-bar-line.oth-menu-bar-line
     h1.oth-title Othy's#[br]Lab
     canvas#othy-clock.oth-clock
-    div#othy-menu.oth-menu
-      //
-      // TODO: cacher le menu pour l'ouvrir avec la petite barre
-      //
-      button#othy-menu-blog Le blog
-      button#othy-menu-projets Les projets de dév
-      button#othy-menu-jdr Les jeux de rôles
     //div#othy-view.oth-viewer(style='display:none')
     // TODO
     div#othy-view.oth-viewer
+    div#othy-menu.oth-menu(style='display:none')
+      button#othy-menu-blog Le blog
+      button#othy-menu-projets Les projets de dév
+      button#othy-menu-jdr Les jeux de rôles
